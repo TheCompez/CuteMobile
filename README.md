@@ -1,8 +1,8 @@
 # CuteMobile Concept Demo
 A concept mobile app UI/UX prototype based on Qt Quick technology.
 
-## Language & Technology Support
-- C++20
+## Language & Technology Required
+- C++17
 - Qt6 and QML
 
 ## Building

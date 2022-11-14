@@ -766,7 +766,7 @@ required. For example, an array dimension.
 #define PLATFORM_DEVICE "Desktop"
 #define PLATFORM_TYPE "Unix (Linux)"
 /* Linux. --------------------------------------------------- */
-#elif defined(ARM64_BIT) && defined(__linux) && defined(__linux__)
+#elif defined(ARM64_BIT) && defined(__linux) && defined(__linux__) && !defined(__ANDROID__)
 #define PLATFORM_OS "Linux"
 #define PLATFORM_ARCH "arm64 (aarch64)"
 #define PLATFORM_LINUX "Linux"
