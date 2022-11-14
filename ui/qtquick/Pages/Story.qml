@@ -130,6 +130,24 @@ Popup {
                             self: true
                         }
                         ListElement {
+                            avatarSource: "https://avatars.githubusercontent.com/u/105925065?s=200&v=4"
+                            fullname : "Genyleap"
+                            username: "thegenyleap"
+                            addNew : false
+                            live: false
+                            story: true
+                            self: false
+                        }
+                        ListElement {
+                            avatarSource: "https://avatars.githubusercontent.com/u/10933044?v=4"
+                            fullname : "Bjarne Stroustrup"
+                            username: "stroustrup"
+                            addNew : false
+                            live: false
+                            story: true
+                            self: false
+                        }
+                        ListElement {
                             avatarSource: "https://avatars.githubusercontent.com/u/1801526?v=4"
                             fullname: "Herb Sutter"
                             username: "sutter"
@@ -139,9 +157,9 @@ Popup {
                             self: false
                         }
                         ListElement {
-                            avatarSource: "https://avatars.githubusercontent.com/u/10933044?v=4"
-                            fullname : "Bjarne Stroustrup"
-                            username: "stroustrup"
+                            avatarSource: "https://avatars.githubusercontent.com/u/1024025?v=4"
+                            fullname : "Linus Torvalds"
+                            username: "torvalds"
                             addNew : false
                             live: false
                             story: true
@@ -166,27 +184,9 @@ Popup {
                             self: false
                         }
                         ListElement {
-                            avatarSource: "https://avatars.githubusercontent.com/u/1024025?v=4"
-                            fullname : "Linus Torvalds"
-                            username: "torvalds"
-                            addNew : false
-                            live: false
-                            story: true
-                            self: false
-                        }
-                        ListElement {
                             avatarSource: "https://avatars.githubusercontent.com/u/177011?v=4"
                             fullname : "Daniel Stenberg"
                             username: "stenberg"
-                            addNew : false
-                            live: false
-                            story: true
-                            self: false
-                        }
-                        ListElement {
-                            avatarSource: "https://avatars.githubusercontent.com/u/105925065?s=200&v=4"
-                            fullname : "Genyleap"
-                            username: "thegenyleap"
                             addNew : false
                             live: false
                             story: true

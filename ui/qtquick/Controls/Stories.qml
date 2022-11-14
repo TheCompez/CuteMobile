@@ -22,10 +22,10 @@ Item {
             self: true
         }
         ListElement {
-            source: "https://avatars.githubusercontent.com/u/1801526?v=4"
-            fullname: "Herb Sutter"
+            source: "https://avatars.githubusercontent.com/u/105925065?s=200&v=4"
+            fullname : "Genyleap"
             addNew : false
-            live: true
+            live: false
             story: true
             self: false
         }
@@ -38,10 +38,10 @@ Item {
             self: false
         }
         ListElement {
-            source: "https://avatars.githubusercontent.com/u/6557263?v=4"
-            fullname : "Hana Dusíková"
+            source: "https://avatars.githubusercontent.com/u/1801526?v=4"
+            fullname: "Herb Sutter"
             addNew : false
-            live: false
+            live: true
             story: true
             self: false
         }
@@ -62,16 +62,16 @@ Item {
             self: false
         }
         ListElement {
-            source: "https://avatars.githubusercontent.com/u/177011?v=4"
-            fullname : "Daniel Stenberg"
+            source: "https://avatars.githubusercontent.com/u/6557263?v=4"
+            fullname : "Hana Dusíková"
             addNew : false
             live: false
             story: true
             self: false
         }
         ListElement {
-            source: "https://avatars.githubusercontent.com/u/105925065?s=200&v=4"
-            fullname : "Genyleap"
+            source: "https://avatars.githubusercontent.com/u/177011?v=4"
+            fullname : "Daniel Stenberg"
             addNew : false
             live: false
             story: true
