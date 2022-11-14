@@ -19,7 +19,7 @@ make
 ./CuteMobile
 
 ```
-#Customization
+## Customization
 Use the Project-Template guide for customization.
 - https://github.com/KambizAsadzadeh/Project-Template
 
