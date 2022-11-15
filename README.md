@@ -24,7 +24,12 @@ Use the Project-Template guide for customization.
 - https://github.com/KambizAsadzadeh/Project-Template
 
 ## Demo
-![Preview](https://user-images.githubusercontent.com/4066299/201681897-ecbdf6fd-4b96-46e8-8860-6cb5230c4df2.jpg)
+
+![S01](https://user-images.githubusercontent.com/4066299/201901734-163c03ab-e9a1-44bb-bdc1-3e9702453205.jpg)
+
+![S02](https://user-images.githubusercontent.com/4066299/201901767-78b3f59b-6048-4b54-8845-e7a47a6bd59b.jpg)
+
+![S03](https://user-images.githubusercontent.com/4066299/201901779-70dfc430-0ffe-4ff0-9efc-e3d9a5a47bb9.jpg)
 
 ## Note
 This sample is not yet complete and is under development.
