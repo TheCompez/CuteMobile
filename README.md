@@ -4,7 +4,7 @@ A concept mobile app UI/UX prototype based on Qt Quick technology.
 
 ## Language & Technology Required
 - C++17
-- Qt6 and QML
+- Qt and QML (version 6.x only).
 - Project-Template
 
 ## Building
