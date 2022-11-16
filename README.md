@@ -33,3 +33,6 @@ Use the Project-Template guide for customization.
 
 ## Note
 This sample is not yet complete and is under development.
+
+## Note for iOS Developers
+- Change ```DEVELOPER_BUNDLE_IDENTIFIER``` variable to your own developer id.
