@@ -282,24 +282,25 @@ if(GUI_APPLICATION)
             list(APPEND QT_MODULES_LINK
                 Qt${QT_VERSION_MAJOR}::Core
                 )
-            find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core)
-            find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core)
+            find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core CorePrivate)
+            find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core CorePrivate)
         elseif(${PROJECT_MAIN_TYPE} STREQUAL "qtwidget")
             list(APPEND QT_MODULES Core Widgets)
             list(APPEND QT_MODULES_LINK
                 Qt${QT_VERSION_MAJOR}::Core
+                Qt${QT_VERSION_MAJOR}::CorePrivate
                 Qt${QT_VERSION_MAJOR}::Widgets
                 )
-            find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core Widgets)
-            find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Widgets)
+            find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core CorePrivate Widgets)
+            find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core CorePrivateWidgets)
         elseif(${PROJECT_MAIN_TYPE} STREQUAL "qtquick")
             list(APPEND QT_MODULES Core${SPACE_ARG})
             list(APPEND QT_MODULES Quick${SPACE_ARG})
             list(APPEND QT_MODULES_LINK
-                Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick
+                Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::CorePrivate Qt${QT_VERSION_MAJOR}::Quick
                 )
-            find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core Quick)
-            find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Quick)
+            find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core CorePrivate Widgets Quick)
+            find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Widgets Quick)
         endif()
     endif()
 
@@ -313,6 +314,8 @@ if(GUI_APPLICATION)
             qt_add_executable(${PROJECT_NAME}
                 MANUAL_FINALIZATION
                 ${SOURCESFILE}
+                ${STATUSBAR_COMMON_SOURCES}
+                ${STATUSBAR_PLATFORM_SOURCES}
             )
         endif()
     else()
@@ -333,14 +336,44 @@ if(GUI_APPLICATION)
         endif()
     endif()
 
+    #Extra Modules
+
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${LIB_MODULES})
+    target_include_directories(${PROJECT_NAME}
+        PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/source PRIVATE source
+        ${LIB_TARGET_INCLUDE_DIRECTORIES}
+        )
+
+    target_link_directories(${PROJECT_NAME}
+        PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/source
+        ${LIB_TARGET_LINK_DIRECTORIES}
+        )
+
+
     if(USE_QT_QUICK_COMPILER)
     find_package(QtQuickCompiler)
     qt_add_resources(UI_SOURCE ui/qtquick/qml.qrc)
     endif()
     target_link_libraries(${PROJECT_NAME} PRIVATE ${QT_MODULES_LINK})
+    #Extra Modules
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${LIB_MODULES})
+    target_include_directories(${PROJECT_NAME}
+        PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/source PRIVATE source
+        ${LIB_TARGET_INCLUDE_DIRECTORIES}
+        )
+    target_link_directories(${PROJECT_NAME}
+        PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/source
+        ${LIB_TARGET_LINK_DIRECTORIES}
+        )
+    endif()
 
     set_target_properties(${PROJECT_NAME} PROPERTIES
         MACOSX_BUNDLE_GUI_IDENTIFIER ${DEVELOPER_BUNDLE_IDENTIFIER}
+#        MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/ios/Info.plist"
         MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
         MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
         MACOSX_BUNDLE TRUE
@@ -358,32 +391,6 @@ endif()
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_import_qml_plugins(${PROJECT_NAME})
     qt_finalize_executable(${PROJECT_NAME})
-endif()
-else()
-
-if(PROJECT_USAGE_TYPE STREQUAL "library")
-    add_library(${PROJECT_NAME}
-      ${SOURCESFILE}
-    )
-else()
-    add_executable(${PROJECT_NAME}
-      ${SOURCESFILE}
-    )
-endif()
-
-#Extra Modules
-target_link_libraries(${PROJECT_NAME} PRIVATE ${LIB_MODULES})
-target_include_directories(${PROJECT_NAME}
-    PUBLIC
-    ${CMAKE_CURRENT_SOURCE_DIR}/source PRIVATE source
-    ${LIB_TARGET_INCLUDE_DIRECTORIES}
-    )
-
-target_link_directories(${PROJECT_NAME}
-    PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/source
-    ${LIB_TARGET_LINK_DIRECTORIES}
-    )
 endif()
 
 target_compile_definitions(${PROJECT_NAME} PUBLIC ${LIB_TARGET_COMPILER_DEFINATION})

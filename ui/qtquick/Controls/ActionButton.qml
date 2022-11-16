@@ -55,11 +55,12 @@ T.Button {
         }
 
         Text {
-            font.family: control.down ? fontSystem.getAwesomeSolid.name : fontSystem.getAwesomeRegular.name
+            font.family: fontSystem.getAwesomeLight.name
             font.pixelSize: appStyle.h3
-            font.bold: control.down ? true : isBold ? true : false
-            font.weight: Font.Bold
             text: setIcon
+            font.weight: Font.ExtraLight
+            font.bold: control.down ? true : false
+            font.styleName: control.down ? "Bold" : "Light"
             color: frontColor
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter

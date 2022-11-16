@@ -5,5 +5,4 @@ T.Text {
     font.pixelSize: appStyle.h4
     color: appStyle.foregroundActivated
     font.bold: true
-    font.weight: T.Font.Normal
 }

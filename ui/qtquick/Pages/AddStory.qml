@@ -5,63 +5,19 @@ import Qt5Compat.GraphicalEffects
 
 import "../Controls" as Controls
 
-Popup {
-    id: storyPopup
-    parent: Overlay.overlay
-    anchors.centerIn: Overlay.overlay
-    modal: true
-    focus: true
-    closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
-    dim: true
-    width: appRoot.width
+//!Send Drawer
+Drawer {
+    id: control
+    width:  appRoot.width
     height: appRoot.height
-
-    property bool hasUserStory : false
-
-    property int userId: 0
-    property string userAvatar: ""
-    property string userName: ""
+    edge: Qt.BottomEdge
+    interactive: true
 
     background: Rectangle {
         color: appStyle.primary
     }
 
-    enter: Transition {
-        ParallelAnimation {
-            NumberAnimation {
-                property: "opacity";
-                from: 0.0;
-                to: 1.0;
-                duration: 100
-            }
-            NumberAnimation {
-                property: "scale";
-                from: 0.4;
-                to: 1.0;
-                easing.type: Easing.OutBack
-                duration: 100
-            }
-        }
-    }
-    exit: Transition {
-        ParallelAnimation {
-            NumberAnimation {
-                property: "opacity";
-                from: 1.0
-                to: 0.0;
-                duration: 100
-            }
-            NumberAnimation {
-                property: "scale";
-                from: 1.0
-                to: 0.8;
-                duration: 100
-            }
-        }
-    }
-
-    //![Content]
-    Page {
+    contentItem: Page {
         anchors.fill: parent
         background: Rectangle {
             color: "transparent"
@@ -259,85 +215,92 @@ Popup {
         }
 
 
-        header: Rectangle {
-
-            width: parent.width
-            height: 72
-            Layout.fillWidth: true
-            Layout.preferredHeight: 72
-            Layout.minimumHeight: 72
-            color: "transparent"
-
-            property bool isBold : false
-
+        header: Column {
             Rectangle {
                 width: parent.width
                 Layout.fillWidth: true
-                height: 24
-                color: "transparent"
+                height: appSystem.isAndroid ? 10 : (!appSystem.isAndroid  && !appSystem.isIos ? 0 : appSystem.isIos ?48 : 0);
+                color: appSystem.isAndroid ? appStyle.primary : appStyle.accent
             }
-
-            ColumnLayout {
+            Rectangle {
 
                 width: parent.width
+                height: 72
                 Layout.fillWidth: true
-                Layout.fillHeight: true
+                Layout.preferredHeight: 72
+                Layout.minimumHeight: 72
+                color: "transparent"
 
-                Controls.VerticalSpacer { }
+                property bool isBold : false
 
-                Item { height: 5;}
+                Rectangle {
+                    width: parent.width
+                    Layout.fillWidth: true
+                    height: 24
+                    color: "transparent"
+                }
 
-                RowLayout {
+                ColumnLayout {
 
                     width: parent.width
                     Layout.fillWidth: true
+                    Layout.fillHeight: true
 
-                    Item { width: 5; }
+                    Controls.VerticalSpacer { }
 
-                    Controls.Avatar {
-                        width: 32
-                        height: 32
-                        source: userAvatar
-                    }
+                    Item { height: 5;}
 
-                    Text {
-                        font.family: fontSystem.getContentFont.name
-                        font.pixelSize: appStyle.t2
-                        font.bold: false
-                        font.weight: Font.Normal
-                        text: "<strong>" + userName + "</strong> 21h"
-                        color: appStyle.accent
-                    }
+                    RowLayout {
 
-                    Controls.HorizontalSpacer { }
+                        width: parent.width
+                        Layout.fillWidth: true
 
-                    Controls.ActionButton {
-                        id: settingButton
-                        Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-                        frontColor: appStyle.accent
-                        setIcon: "\uf141"
-                        isBold: true
-                        onClicked: {
+                        Item { width: 5; }
 
+                        Controls.Avatar {
+                            width: 32
+                            height: 32
+                            source: userAvatar
                         }
-                    }
 
-                    Controls.ActionButton {
-                        id: closeButton
-                        Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-                        frontColor: appStyle.accent
-                        setIcon: "\uf00d"
-                        isBold: true
-                        onClicked: {
-                            storyPopup.close();
+                        Text {
+                            font.family: fontSystem.getContentFont.name
+                            font.pixelSize: appStyle.t2
+                            font.bold: false
+                            font.weight: Font.Normal
+                            text: "<strong>" + userName + "</strong> 21h"
+                            color: appStyle.accent
                         }
+
+                        Controls.HorizontalSpacer { }
+
+                        Controls.ActionButton {
+                            id: settingButton
+                            Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                            frontColor: appStyle.accent
+                            setIcon: "\uf141"
+                            isBold: true
+                            onClicked: {
+
+                            }
+                        }
+
+                        Controls.ActionButton {
+                            id: closeButton
+                            Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                            frontColor: appStyle.accent
+                            setIcon: "\uf00d"
+                            isBold: true
+                            onClicked: {
+                                control.close();
+                            }
+                        }
+
+                        Item { width: 5; }
+
                     }
-
-                    Item { width: 5; }
-
                 }
             }
-
         }
 
         contentData: Rectangle {
@@ -389,106 +352,6 @@ Popup {
 
             Item { width: 15; }
 
-        }
-    }
-
-    //![Content Creator]
-    Page {
-        anchors.fill: parent
-        background: Rectangle {
-            color: "transparent"
-        }
-        visible: hasUserStory ? false :  true
-
-        header: Rectangle {
-
-            width: parent.width
-            height: 72
-            Layout.fillWidth: true
-            Layout.preferredHeight: 42
-            Layout.minimumHeight: 42
-            color: appStyle.primary
-
-            property bool isBold : false
-
-            Rectangle {
-                width: parent.width
-                Layout.fillWidth: true
-                height: 24
-                color: appStyle.primary
-            }
-
-            ColumnLayout {
-
-                width: parent.width
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-
-                Controls.VerticalSpacer { }
-
-                Item { height: 5;}
-
-                RowLayout {
-
-                    width: parent.width
-                    Layout.fillWidth: true
-
-                    Item { width: 5; }
-
-                    Controls.ActionButton {
-                        id: settingNewButton
-                        Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-                        frontColor: appStyle.accent
-                        setIcon: "\uf00d"
-                        isBold: true
-                        onClicked: {
-                            storyPopup.close();
-                        }
-                    }
-
-                    Controls.HorizontalSpacer { }
-
-                    Text {
-                        font.family: fontSystem.getContentFont.name
-                        font.pixelSize: appStyle.t1
-                        font.bold: false
-                        font.weight: Font.Normal
-                        text: "<strong>Add to story</strong>"
-                        color: appStyle.accent
-                    }
-
-                    Controls.HorizontalSpacer { }
-
-                    Controls.ActionButton {
-                        id: closeNewButton
-                        Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-                        frontColor: appStyle.accent
-                        setIcon: "\uf013"
-                        isBold: true
-                        onClicked: {
-                        }
-                    }
-
-                    Item { width: 5; }
-
-                }
-            }
-
-        }
-
-        contentData: Rectangle {
-            width: 164
-            height: 32
-            anchors.centerIn: parent
-            radius: 32
-            color: appStyle.primaryBack
-            Text {
-                anchors.centerIn: parent
-                font.family: fontSystem.getContentFont.name
-                font.pixelSize: appStyle.t1
-                color: appStyle.accent
-                text: qsTr("No data found!")
-            }
         }
     }
 

@@ -31,11 +31,11 @@ Item {
         Text {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            font.family: isSelected ? fontSystem.getAwesomeSolid.name : fontSystem.getAwesomeRegular.name
+            font.family: fontSystem.getAwesomeLight.name
             font.pixelSize: appStyle.h2
-            //            font.bold: isSelected ? true : false
-            font.bold: true
-            //            font.weight: isSelected ? Font.Bold : Font.Light
+            font.weight: Font.ExtraLight
+            font.bold: isSelected ? true : false
+            font.styleName: isSelected ? "Bold" : "Light"
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
             color: isSelected ? "#ffffff" : "#BEC0C8"

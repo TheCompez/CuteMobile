@@ -90,7 +90,7 @@ T.Button {
         implicitWidth: control.width
         implicitHeight: control.height
         Layout.fillWidth: true
-        radius: appStyle.radius
+        radius: width
         color: isDefault ? style : "transparent";
         border.width: isDefault ? 0 : 1
         border.color: isDefault ? "transparent" : style
@@ -118,7 +118,7 @@ T.Button {
 
     Rectangle {
         id: mask
-        radius: appStyle.radius
+        radius: width
         anchors.fill: parent
         visible: false
     }

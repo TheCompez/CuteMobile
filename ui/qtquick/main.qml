@@ -11,6 +11,8 @@ import "./Controls" as Controls
 import "./Pages" as Pages
 import "./Profile" as Profile
 
+import System 0.1
+
 ApplicationWindow {
     id: appRoot
     visible: true
@@ -20,7 +22,6 @@ ApplicationWindow {
         property string name: "Cute Mobile"
         property int width: 370
         property int height: 920
-
         property int interiorWidth : appRoot.width
         property int interiorHeight : appRoot.height / 2
     }
@@ -28,9 +29,21 @@ ApplicationWindow {
     title: qsTr(appAttributes.name)
     width: appAttributes.width
     height: appAttributes.height
-    flags: Qt.WindowNoState
+    maximumWidth: !appSystem.isAndroid && !appSystem.isIos ? 370 : width
+    maximumHeight: !appSystem.isAndroid && !appSystem.isIos ? 370 : height
+
+    flags: Qt.Window | Qt.MaximizeUsingFullscreenGeometryHint
+
+    //!Getting system data from low level [C++ macros].
+    System {
+        id: appSystem;
+    }
 
     AppStyle { id: appStyle; }
+
+    Component.onCompleted: {
+
+    }
 
     FontSystem { id: fontSystem; }
 
@@ -49,6 +62,17 @@ ApplicationWindow {
 
     Pages.Story { id: userStory; }
 
+    Pages.AddStory { id: addStoryPage; }
+
+    header: Rectangle {
+        width: parent.width
+        Layout.fillWidth: true
+        height: 64
+        color: "black"
+        visible: userStory.opened ? true : false
+    }
+
+
     //![CONTENT]
     contentData: StackView {
         id: rootStackViewMain
@@ -64,6 +88,7 @@ ApplicationWindow {
             background: Rectangle {
                 color: "transparent"
             }
+            header: Rectangle { height: appSystem.isAndroid ? 32 : (!appSystem.isAndroid  && !appSystem.isIos ? 0 : appSystem.isIos ? 48 : 0); }
             //![MAIN STACKLAYOUT]
             StackLayout {
                 id: userStackLayout
@@ -81,7 +106,7 @@ ApplicationWindow {
                 id: appFooter
                 color: "transparent"
                 width: parent.width
-                height: 72
+                height: 100
                 Interface.Footer { }
             }
             //![FOOTER]

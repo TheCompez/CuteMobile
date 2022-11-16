@@ -8,6 +8,7 @@ Item {
 
     property var getAwesomeBrand: fontAwesomeBrand
     property var getAwesomeRegular: fontAwesomeRegular
+    property var getAwesomeLight: fontAwesomeLight
     property var getAwesomeSolid: fontAwesomeSolid
     property var getContentFont: contentFontMedium
     property var getContentFontBold: contentFontBold
@@ -34,12 +35,18 @@ Item {
 
     FontLoader {
         id: fontAwesomeRegular
-        source: "qrc:/Resources/fonts/Font Awesome 5 Free-Regular-400.otf"
+        source: "qrc:/Resources/fonts/Font Awesome 5 Pro-Regular-400.otf"
     }
 
     FontLoader {
+        id: fontAwesomeLight
+        source: "qrc:/Resources/fonts/Font Awesome 5 Pro-Light-300.otf"
+    }
+
+
+    FontLoader {
         id: fontAwesomeSolid
-        source: "qrc:/Resources/fonts/Font Awesome 5 Free-Solid-900.otf"
+        source: "qrc:/Resources/fonts/Font Awesome 5 Pro-Solid-900.otf"
     }
 
     FontLoader {

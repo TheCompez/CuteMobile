@@ -22,7 +22,7 @@ Rectangle {
             font.family: fontSystem.getAwesomeSolid.name
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
             font.pixelSize: appStyle.h3
-            font.bold: true
+            font.bold: control.down ? true : f
             font.weight: Font.Light
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter

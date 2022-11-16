@@ -30,8 +30,9 @@ T.TabButton {
             font.family: fontSystem.getAwesomeRegular.name
             color: controlTabButton.isFocused ? appStyle.primary : appStyle.backgroundDeactivated
             font.pixelSize: appStyle.h3
-            font.bold: isBold ? true : false
-            font.weight: isBold ? Font.Bold : Font.Light
+            font.weight: Font.ExtraLight
+            font.bold: controlTabButton.isFocused ? true : false
+            font.styleName: controlTabButton.isFocused ? "Bold" : "Light"
             text: setIcon
         }
 

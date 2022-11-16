@@ -20,12 +20,6 @@ Rectangle {
 
     property bool isBold : false
 
-    Rectangle {
-        width: parent.width
-        Layout.fillWidth: true
-        height: 24
-    }
-
     ColumnLayout {
 
         width: parent.width
@@ -225,15 +219,13 @@ Rectangle {
 
     visible: userStackLayout.currentIndex === 4 ? true : false
 
-    Item { height: 5;}
-
     RowLayout {
 
         width: parent.width
         Layout.fillWidth: true
         spacing: 5
 
-        Item { width: 10; }
+        Item { width: 15; }
 
         Text {
             font.family: fontSystem.getContentFontMedium.name

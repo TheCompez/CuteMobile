@@ -13,9 +13,9 @@ Rectangle {
 
     width: parent.width
     Layout.fillWidth: true
-    height: 72
-    Layout.preferredHeight: 72
-    Layout.minimumHeight: 96
+    height: 100
+    Layout.preferredHeight: 100
+    Layout.minimumHeight: 100
     color: appStyle.footer
     radius: 40
 
@@ -35,7 +35,7 @@ Rectangle {
         width: parent.width
         Layout.fillWidth: true
         Layout.fillHeight: true
-        spacing: 10
+        spacing: 20
 
         Item {
             height: 5

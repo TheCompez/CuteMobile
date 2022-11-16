@@ -239,10 +239,11 @@ Rectangle {
         id: tapHandler
         gesturePolicy: TapHandler.ReleaseWithinBounds
         onTapped: {
-            userStory.userAvatar = url
-            userStory.userName = userNameString;
-            userStory.open()
-            userStory.hasUserStory = avatarHasStory
+            addStoryPage.open();
+//            userStory.userAvatar = url
+//            userStory.userName = userNameString;
+//            userStory.open()
+//            userStory.hasUserStory = avatarHasStory
         }
     }
 }

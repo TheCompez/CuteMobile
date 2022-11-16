@@ -161,7 +161,7 @@ Page {
 
                             Controls.ActionButton {
                                 id: menuButton
-                                setIcon: "\uf14d"
+                                setIcon: "\uf39b"
                                 Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                                 onClicked: {
                                     moreLink.open()
