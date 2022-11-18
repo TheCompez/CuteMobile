@@ -1,6 +1,7 @@
 #ifndef PLATFORMTEST_HPP
 #define PLATFORMTEST_HPP
 
+
 class PlatformTest
 {
 public:
