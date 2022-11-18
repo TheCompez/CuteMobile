@@ -78,14 +78,6 @@ T.Button {
         Item { width: 5; }
     }
 
-    layer.enabled: appStyle.shadow
-    layer.effect: DropShadow {
-        radius: 30
-        samples: radius * 2 + 1
-        color: appStyle.lightShadow
-        verticalOffset: 10
-    }
-
     background: Rectangle {
         implicitWidth: control.width
         implicitHeight: control.height

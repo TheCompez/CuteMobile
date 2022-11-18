@@ -13,6 +13,11 @@ Drawer {
     edge: Qt.BottomEdge
     interactive: true
 
+    property bool  hasUserStory: false
+    property string setAvatar : ""
+    property string setUsername : ""
+    property string setFullName : ""
+
     background: Rectangle {
         color: appStyle.primary
     }
@@ -169,7 +174,7 @@ Drawer {
                             Controls.Avatar {
                                 width: 32
                                 height: 32
-                                source: avatarSource
+                                source: setAvatar
                             }
 
                             Column {
@@ -178,7 +183,7 @@ Drawer {
                                     font.pixelSize: appStyle.t1
                                     font.bold: true
                                     font.weight: Font.Bold
-                                    text: fullname
+                                    text: setFullName
                                     color: appStyle.foregroundActivated
                                 }
                                 Text {
@@ -186,7 +191,7 @@ Drawer {
                                     font.pixelSize: appStyle.t2
                                     font.bold: false
                                     font.weight: Font.Normal
-                                    text: username
+                                    text: setUsername
                                     color: appStyle.foregroundActivated
                                 }
                             }
@@ -260,7 +265,7 @@ Drawer {
                         Controls.Avatar {
                             width: 32
                             height: 32
-                            source: userAvatar
+                            source: setAvatar
                         }
 
                         Text {
@@ -268,7 +273,7 @@ Drawer {
                             font.pixelSize: appStyle.t2
                             font.bold: false
                             font.weight: Font.Normal
-                            text: "<strong>" + userName + "</strong> 21h"
+                            text: "<strong>" + setUsername + "</strong> 21h"
                             color: appStyle.accent
                         }
 

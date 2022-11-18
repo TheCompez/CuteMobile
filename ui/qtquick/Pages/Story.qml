@@ -18,9 +18,10 @@ Popup {
 
     property bool hasUserStory : false
 
-    property int userId: 0
-    property string userAvatar: ""
-    property string userName: ""
+    property int setUserId : 0
+    property string setAvatar : ""
+    property string setUsername : ""
+    property string setFullName : ""
 
     background: Rectangle {
         color: appStyle.primary
@@ -213,7 +214,7 @@ Popup {
                             Controls.Avatar {
                                 width: 32
                                 height: 32
-                                source: avatarSource
+                                source: setAvatar
                             }
 
                             Column {
@@ -222,7 +223,7 @@ Popup {
                                     font.pixelSize: appStyle.t1
                                     font.bold: true
                                     font.weight: Font.Bold
-                                    text: fullname
+                                    text: setFullName
                                     color: appStyle.foregroundActivated
                                 }
                                 Text {
@@ -230,7 +231,7 @@ Popup {
                                     font.pixelSize: appStyle.t2
                                     font.bold: false
                                     font.weight: Font.Normal
-                                    text: username
+                                    text: setUsername
                                     color: appStyle.foregroundActivated
                                 }
                             }
@@ -297,7 +298,7 @@ Popup {
                     Controls.Avatar {
                         width: 32
                         height: 32
-                        source: userAvatar
+                        source: setAvatar
                     }
 
                     Text {
@@ -305,7 +306,7 @@ Popup {
                         font.pixelSize: appStyle.t2
                         font.bold: false
                         font.weight: Font.Normal
-                        text: "<strong>" + userName + "</strong> 21h"
+                        text: "<strong>" + setUsername + "</strong> 21h"
                         color: appStyle.accent
                     }
 

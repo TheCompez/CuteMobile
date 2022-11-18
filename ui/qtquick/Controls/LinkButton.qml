@@ -7,6 +7,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 Rectangle {
+    id: control
     width: 80
     height: 80
     radius: appStyle.radius
@@ -22,7 +23,7 @@ Rectangle {
             font.family: fontSystem.getAwesomeSolid.name
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
             font.pixelSize: appStyle.h3
-            font.bold: control.down ? true : f
+            font.bold: mouseArea.containsPress ? true : false
             font.weight: Font.Light
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
