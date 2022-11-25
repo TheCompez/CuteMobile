@@ -1,8 +1,10 @@
-# -------------------- PROJECT INFO --------------------
-#   Title   :                       Project Template
-#   Version :                       1.0.2.0
+# -------------------- PROJECT TEMPLATE INFO ---------------------------------------------
+#   Title   :                       CuteMobile
+#   Version :                       1.0.6
 #   Author  :                       Kambiz Asadzadeh
-# ------------------------------------------------------
+#   Url     :                       https://github.com/KambizAsadzadeh/CuteMobile
+#   Organization  :                 The Genyleap [Kambiz Asadzadeh]
+# ----------------------------------------------------------------------------------------
 
 cmake_minimum_required(VERSION 3.23)
 cmake_policy(SET CMP0048 NEW)
