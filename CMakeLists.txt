@@ -17,7 +17,7 @@ include(FetchContent)
 
 # ------ PROJECT INFO ------
 # Options
-set(PROJECT_NAME "Project-Template" CACHE STRING "Project Name.") #You can change "ProjectTemplate" with your project name.
+set(PROJECT_NAME "CuteMobile" CACHE STRING "Project Name.") #You can change "ProjectTemplate" with your project name.
 set(PROJECT_TARGET ${PROJECT_NAME} CACHE STRING "Project Target Name.")
 
 set(PROJECT_VERSION_MAJOR 1)
@@ -69,7 +69,7 @@ set(PROJECT_MAIN_TYPE "qtquick" CACHE STRING "Library System.")
 set(DEVELOPER_BUNDLE_IDENTIFIER com.kambizasadzadeh.app.${PROJECT_NAME} CACHE STRING "Developer Bundle Identifier.")
 
 #You can replace your project description with this string.
-set(PROJECT_DESCRIPTION "A template for modern C++ projects with useful features for developing cross-platform projects." CACHE STRING "Project Description")
+set(PROJECT_DESCRIPTION "A concept mobile app UI/UX prototype based on Qt Quick technology." CACHE STRING "Project Description")
 
 #Your project website address.
 set(PROJECT_HOMEPAGE_URL "https://kambizasadzadeh.com" CACHE STRING "Project URL.")
@@ -288,8 +288,8 @@ if(GUI_APPLICATION)
                 Qt${QT_VERSION_MAJOR}::Core
                 Qt${QT_VERSION_MAJOR}::Widgets
                 )
-            find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core Widgets)
-            find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Widgets)
+            find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core CorePrivateWidgets)
+            find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core CorePrivateWidgets)
         elseif(${PROJECT_MAIN_TYPE} STREQUAL "qtquick")
             list(APPEND QT_MODULES Core${SPACE_ARG})
             list(APPEND QT_MODULES Quick${SPACE_ARG})
