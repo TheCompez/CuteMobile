@@ -1,5 +1,5 @@
 #include "platformtest.hpp"
-#include "../common.hpp"
+#include "common.hpp"
 #include <iostream>
 
 using namespace std;
@@ -72,7 +72,7 @@ void PlatformTest::getPlatformInfo() const noexcept
     cout << "Platform Architecture: " << PLATFORM_ARCH << "\n";
     cout << "OS Name: " << PLATFORM_WINDOWS_PHONE << "\n";
 #elif defined(PLATFORM_IOS_SIMULATOR)
-//    cout << "Device: " << PLATFORM_DEVICE << "\n";
+    cout << "Device: " << PLATFORM_DEVICE << "\n";
     cout << "Type: " << PLATFORM_TYPE << "\n";
     cout << "Platform OS: " << PLATFORM_OS << "\n";
     cout << "Platform Architecture: " << PLATFORM_ARCH << "\n";

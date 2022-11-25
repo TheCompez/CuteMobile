@@ -1,10 +1,8 @@
-# -------------------- PROJECT TEMPLATE INFO ---------------------------------------------
+# -------------------- PROJECT INFO --------------------
 #   Title   :                       Project Template
 #   Version :                       1.0.2.0
 #   Author  :                       Kambiz Asadzadeh
-#   Url     :                       https://github.com/KambizAsadzadeh/Project-Template
-#   Organization  :                 The Genyleap
-# ----------------------------------------------------------------------------------------
+# ------------------------------------------------------
 
 cmake_minimum_required(VERSION 3.23)
 cmake_policy(SET CMP0048 NEW)
@@ -19,15 +17,15 @@ include(FetchContent)
 
 # ------ PROJECT INFO ------
 # Options
-set(PROJECT_NAME "CuteMobile" CACHE STRING "Project Name.") #You can change "ProjectTemplate" with your project name.
+set(PROJECT_NAME "Project-Template" CACHE STRING "Project Name.") #You can change "ProjectTemplate" with your project name.
 set(PROJECT_TARGET ${PROJECT_NAME} CACHE STRING "Project Target Name.")
 
 set(PROJECT_VERSION_MAJOR 1)
 set(PROJECT_VERSION_MINOR 0)
-set(PROJECT_VERSION_PATCH 2)
+set(PROJECT_VERSION_PATCH 6)
 
 # ---- Project settings ----
-set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+set_property(GLOBAL APPEND PROPERTY USE_FOLDERS ON)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -54,7 +52,7 @@ if(NOT PROJECT_VERSION_TAG)
   set(PROJECT_VERSION_TAG 00000000)
 endif()
 set(PROJECT_VERSION_TAG_HEX 0x${PROJECT_VERSION_TAG})
-set(PROJECT_VERSION_TYPE "alpha" CACHE STRING "Version type.")
+set(PROJECT_VERSION_TYPE "final" CACHE STRING "Version type.")
 set(PROJECT_VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH})
 set(PROJECT_VERSION_STRING ${PROJECT_VERSION}-${PROJECT_VERSION_TYPE})
 
@@ -71,7 +69,7 @@ set(PROJECT_MAIN_TYPE "qtquick" CACHE STRING "Library System.")
 set(DEVELOPER_BUNDLE_IDENTIFIER com.kambizasadzadeh.app.${PROJECT_NAME} CACHE STRING "Developer Bundle Identifier.")
 
 #You can replace your project description with this string.
-set(PROJECT_DESCRIPTION "A concept mobile app UI/UX prototype based on Qt Quick technology." CACHE STRING "Project Description")
+set(PROJECT_DESCRIPTION "A template for modern C++ projects with useful features for developing cross-platform projects." CACHE STRING "Project Description")
 
 #Your project website address.
 set(PROJECT_HOMEPAGE_URL "https://kambizasadzadeh.com" CACHE STRING "Project URL.")
@@ -282,25 +280,24 @@ if(GUI_APPLICATION)
             list(APPEND QT_MODULES_LINK
                 Qt${QT_VERSION_MAJOR}::Core
                 )
-            find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core CorePrivate)
-            find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core CorePrivate)
+            find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core)
+            find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core)
         elseif(${PROJECT_MAIN_TYPE} STREQUAL "qtwidget")
             list(APPEND QT_MODULES Core Widgets)
             list(APPEND QT_MODULES_LINK
                 Qt${QT_VERSION_MAJOR}::Core
-                Qt${QT_VERSION_MAJOR}::CorePrivate
                 Qt${QT_VERSION_MAJOR}::Widgets
                 )
-            find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core CorePrivate Widgets)
-            find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core CorePrivateWidgets)
+            find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core Widgets)
+            find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Widgets)
         elseif(${PROJECT_MAIN_TYPE} STREQUAL "qtquick")
             list(APPEND QT_MODULES Core${SPACE_ARG})
             list(APPEND QT_MODULES Quick${SPACE_ARG})
             list(APPEND QT_MODULES_LINK
-                Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::CorePrivate Qt${QT_VERSION_MAJOR}::Quick
+                Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick
                 )
-            find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core CorePrivate Widgets Quick)
-            find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Widgets Quick)
+            find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core Quick)
+            find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Quick)
         endif()
     endif()
 
@@ -314,8 +311,6 @@ if(GUI_APPLICATION)
             qt_add_executable(${PROJECT_NAME}
                 MANUAL_FINALIZATION
                 ${SOURCESFILE}
-                ${STATUSBAR_COMMON_SOURCES}
-                ${STATUSBAR_PLATFORM_SOURCES}
             )
         endif()
     else()
@@ -336,27 +331,12 @@ if(GUI_APPLICATION)
         endif()
     endif()
 
-    #Extra Modules
-
-    target_link_libraries(${PROJECT_NAME} PRIVATE ${LIB_MODULES})
-    target_include_directories(${PROJECT_NAME}
-        PUBLIC
-        ${CMAKE_CURRENT_SOURCE_DIR}/source PRIVATE source
-        ${LIB_TARGET_INCLUDE_DIRECTORIES}
-        )
-
-    target_link_directories(${PROJECT_NAME}
-        PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}/source
-        ${LIB_TARGET_LINK_DIRECTORIES}
-        )
-
-
     if(USE_QT_QUICK_COMPILER)
     find_package(QtQuickCompiler)
     qt_add_resources(UI_SOURCE ui/qtquick/qml.qrc)
     endif()
     target_link_libraries(${PROJECT_NAME} PRIVATE ${QT_MODULES_LINK})
+
     #Extra Modules
     target_link_libraries(${PROJECT_NAME} PRIVATE ${LIB_MODULES})
     target_include_directories(${PROJECT_NAME}
@@ -364,18 +344,18 @@ if(GUI_APPLICATION)
         ${CMAKE_CURRENT_SOURCE_DIR}/source PRIVATE source
         ${LIB_TARGET_INCLUDE_DIRECTORIES}
         )
+
     target_link_directories(${PROJECT_NAME}
         PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/source
         ${LIB_TARGET_LINK_DIRECTORIES}
         )
-    endif()
 
     set_target_properties(${PROJECT_NAME} PROPERTIES
         MACOSX_BUNDLE_GUI_IDENTIFIER ${DEVELOPER_BUNDLE_IDENTIFIER}
-#        MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/ios/Info.plist"
         MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
         MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
+        MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/properties/${PLATFORM_FOLDER}/Info.plist.in"
         MACOSX_BUNDLE TRUE
         WIN32_EXECUTABLE TRUE
     )
@@ -388,9 +368,12 @@ if(ANDROID)
     include(${ANDROID_SDK_ROOT}/android_openssl/CMakeLists.txt)
 endif()
 
-if(QT_VERSION_MAJOR EQUAL 6)
+if(QT_VERSION_MAJOR GREATER_EQUAL 6.0) #From Qt.6.0
     qt_import_qml_plugins(${PROJECT_NAME})
-    qt_finalize_executable(${PROJECT_NAME})
+    if(QT_VERSION GREATER_EQUAL 6.2) #From Qt6.2
+        qt_finalize_target(${PROJECT_NAME})
+    endif()
+endif()
 endif()
 
 target_compile_definitions(${PROJECT_NAME} PUBLIC ${LIB_TARGET_COMPILER_DEFINATION})
