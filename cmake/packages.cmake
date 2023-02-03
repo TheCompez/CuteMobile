@@ -1,10 +1,7 @@
-if(NOT QT_VERSION LESS 6)
-    find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core Quick)
-    find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Quick)
-endif()
-
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/")
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/packages")
+
+set(THIRD_PARTY "third-party" CACHE STRING "3rdparty folder for project dependencies. [Don't change this variable.]")
 
 find_package(Git)
 if(Git_FOUND)
