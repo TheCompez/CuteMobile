@@ -24,7 +24,7 @@ set(PROJECT_TARGET ${PROJECT_NAME} CACHE STRING "Project Target Name.")
 
 set(PROJECT_VERSION_MAJOR 1)
 set(PROJECT_VERSION_MINOR 1)
-set(PROJECT_VERSION_PATCH 222)
+set(PROJECT_VERSION_PATCH 300)
 
 # ---- Project settings ----
 set_property(GLOBAL APPEND PROPERTY USE_FOLDERS ON)
@@ -355,7 +355,13 @@ if(GUI_APPLICATION AND PROJECT_MAIN_TYPE STREQUAL "qt" OR PROJECT_MAIN_TYPE STRE
         endif()
     endif()
 
-    target_link_libraries(${PROJECT_NAME} PRIVATE ${LIB_MODULES} ${QT_MODULES_LINK} ${OS_LIBS})
+    #Extra Targets & Modules
+    target_link_libraries(${PROJECT_NAME} PRIVATE
+            ${LIB_STL_MODULES_LINKER}
+            ${LIB_MODULES}
+            ${QT_MODULES_LINK}
+            ${OS_LIBS}
+        )
 
     #Extra Modules
     target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/source PRIVATE source ${LIB_TARGET_INCLUDE_DIRECTORIES})
@@ -404,8 +410,12 @@ else()
         endif()
     endif()
 
-    #Extra Modules
-    target_link_libraries(${PROJECT_NAME} PRIVATE ${LIB_MODULES} ${OS_LIBS})
+    #Extra Targets & Modules
+    target_link_libraries(${PROJECT_NAME} PRIVATE
+            ${LIB_STL_MODULES_LINKER}
+            ${LIB_MODULES}
+            ${OS_LIBS}
+        )
     target_include_directories(${PROJECT_NAME}
         PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/source PRIVATE source
