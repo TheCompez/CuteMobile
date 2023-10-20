@@ -4,7 +4,7 @@
 
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Controls as T
+import QtQuick.Controls.Basic as T
 
 T.TabButton {
 

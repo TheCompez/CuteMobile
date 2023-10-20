@@ -2,7 +2,7 @@
 // Copyright (C) 2022 Kambiz Asadzadeh
 // SPDX-License-Identifier: LGPL-3.0-onlyimport QtQuick
 
-import QtQuick.Controls
+import QtQuick.Controls.Basic
 import QtQuick.Layouts
 
 import "../../Controls" as Controls
